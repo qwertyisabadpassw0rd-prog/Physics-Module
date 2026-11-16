@@ -1,0 +1,64 @@
+import Gravitation as gr
+import Kinematics as ki
+
+#Creating a dictionary for the functions
+functions = {
+    101: ("Average Speed", ki.avg_speed, ["d", "t"]),
+    102: ("Average Velocity", ki.avg_vel, ['s', 't']),
+    103: ("Average Acceleration", ki.avg_acc, ['Δv','Δt']), 
+    104: ("Displacement", ki.displacement, ['u', 't', 'a']),
+    105: ("Velocity wrt time", ki.velocity_time, ['u', 'a', 't']),
+    106: ("Velocity wrt displacement", ki.velocity_disp, ['u', 'a', 's']), 
+    201: ("Gravitational Force", gr.F, ['m1', 'm2', 'r']),
+    202: ("Gravitational Field Intensity", gr.I,['m', 'r']),
+    203: ("Gravitational Potential", gr.V,['M', 'R']), 
+    204: ("Potential Energy bw two bodies", gr.U,['m1', 'm2', 'r']),
+    205: ("Satellite velocity", gr.Vs,['M', 'R', 'h']),
+    206: ("Time Period", gr.T,['R', 'h', 'M']), 
+    207: ("Kinetic Energy", gr.KE,['M', 'm', 'R', 'h']),
+    208: ("Potential Energy of a satellite in orbit", gr.PE, ['M', 'm', 'R', 'h']),
+    209: ("Total Energy", gr.TE,['M', 'm', 'R', 'h']),
+    210:("Escape Velocity", gr.Ve,['M', 'R'])
+    }
+
+class NotInListError(Exception):
+    pass
+
+print("Please choose an option:")
+for key, (name, func, arguments) in functions.items():
+    print(f"{key}. {name}")
+
+try: 
+    choice = int(input("Select a function: "))
+
+    if choice not in functions:
+        raise NotInListError
+
+    else: 
+        print("")
+
+    name, selected_function, arguments = functions[choice]
+
+    kwargs = {}
+
+    for argument in arguments:
+        kwargs[argument] = float(input(f"Enter {argument}: "))
+
+    answer = selected_function(**kwargs)
+
+except ValueError: 
+    print("Please enter a valid number.")
+
+except NotInListError:
+    print("Please enter a valid function")
+
+else: 
+    print("Result:", answer)
+
+
+#Use the main thing in this code
+if __name__ == "__main__":
+    #do stuff here
+
+#Learn how to use GitHub
+#github.com/aakanshavijay/python
